@@ -15,14 +15,41 @@ variable "enable_dns_hostnames" {
   default = true
 }
 
-variable "enable_classiclink" {
-  default = false
-}
-
-variable "enable_classiclink_dns_support" {
-  default = false
-}
-
 variable "preferred_number_of_public_subnets" {
   default = 2
+}
+
+variable "preferred_number_of_private_subnets" {
+  default = 4
+}
+
+variable "Name" {
+  default = "IAC"
+}
+
+variable "Environment" {
+  default = "development"
+}
+
+variable "OwnerEmail" {
+  default = "test@testmail.com"
+}
+
+variable "ManagedBy" {
+  default = "Terraform"
+}
+
+variable "BillingAccount" {
+  description = "AWS Account ID to bill for resources"
+}
+
+variable "tags" {
+  description = "A mapping of tags to assign to all resources."
+  type        = map(string)
+  default     = {}
+}
+
+variable "all_dest" {
+  description = "cidr notation for all destination addresses"
+  default = "0.0.0.0/0"
 }
