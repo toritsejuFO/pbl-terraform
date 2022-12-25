@@ -51,5 +51,5 @@ variable "tags" {
 
 variable "all_dest" {
   description = "cidr notation for all destination addresses"
-  default = "0.0.0.0/0"
+  default     = "0.0.0.0/0"
 }
