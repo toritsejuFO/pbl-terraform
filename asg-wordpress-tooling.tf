@@ -59,7 +59,7 @@ resource "aws_autoscaling_group" "wordpress_asg" {
 # attaching autoscaling group of  wordpress application to internal loadbalancer
 resource "aws_autoscaling_attachment" "asg_attachment_wordpress" {
   autoscaling_group_name = aws_autoscaling_group.wordpress_asg.id
-  lb_target_group_arn   = aws_lb_target_group.wordpress_tg.arn
+  lb_target_group_arn    = aws_lb_target_group.wordpress_tg.arn
 }
 
 # launch template for toooling
@@ -67,7 +67,7 @@ resource "aws_launch_template" "tooling_launch_template" {
   image_id               = var.webserver_ami
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.webserver_sg.id]
-  key_name = var.keypair
+  key_name               = var.keypair
 
   iam_instance_profile {
     name = aws_iam_instance_profile.ec2_instance_profile.id
@@ -127,5 +127,5 @@ resource "aws_autoscaling_group" "tooling_asg" {
 # attaching autoscaling group of  tooling application to internal loadbalancer
 resource "aws_autoscaling_attachment" "asg_attachment_tooling" {
   autoscaling_group_name = aws_autoscaling_group.tooling_asg.id
-  lb_target_group_arn   = aws_lb_target_group.tooling_tg.arn
+  lb_target_group_arn    = aws_lb_target_group.tooling_tg.arn
 }

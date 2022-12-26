@@ -70,6 +70,6 @@ variable "webserver_ami" {
 }
 
 variable "keypair" {
-  type    = string
+  type        = string
   description = "Key pair name for launch template instances"
 }

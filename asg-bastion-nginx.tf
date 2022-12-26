@@ -146,5 +146,5 @@ resource "aws_autoscaling_group" "nginx_asg" {
 # Attach Autoscaling Group of nginx to external load balancer
 resource "aws_autoscaling_attachment" "asg_attachment_nginx" {
   autoscaling_group_name = aws_autoscaling_group.nginx_asg.id
-  lb_target_group_arn   = aws_lb_target_group.nginx_tg.arn
+  lb_target_group_arn    = aws_lb_target_group.nginx_tg.arn
 }
