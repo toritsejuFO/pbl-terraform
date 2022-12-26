@@ -116,7 +116,7 @@ resource "aws_lb_target_group" "tooling_tg" {
   vpc_id      = aws_vpc.main.id
 
   health_check {
-    interval            = 10
+    interval            = 30
     path                = "/healthstatus"
     protocol            = "HTTPS"
     timeout             = 5

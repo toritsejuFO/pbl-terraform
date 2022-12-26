@@ -53,3 +53,23 @@ variable "all_dest" {
   description = "cidr notation for all destination addresses"
   default     = "0.0.0.0/0"
 }
+
+variable "bastion_ami" {
+  type        = string
+  description = "Bastion AMI ID for the the launch template"
+}
+
+variable "nginx_ami" {
+  type        = string
+  description = "Nginx AMI ID for the the launch template"
+}
+
+variable "webserver_ami" {
+  type        = string
+  description = "Webserver AMI ID for the the launch template"
+}
+
+variable "keypair" {
+  type    = string
+  description = "Key pair name for launch template instances"
+}
