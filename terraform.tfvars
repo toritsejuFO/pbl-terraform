@@ -24,3 +24,7 @@ nginx_ami = "ami-0b8ce3b5b0c2079ba"
 webserver_ami = "ami-074ec5445a292dd36"
 
 keypair = "default_kp"
+
+master_username = "admin"
+
+master_password = "minda123"

@@ -40,6 +40,7 @@ variable "ManagedBy" {
 }
 
 variable "BillingAccount" {
+  type        = number
   description = "AWS Account ID to bill for resources"
 }
 
@@ -72,4 +73,14 @@ variable "webserver_ami" {
 variable "keypair" {
   type        = string
   description = "Key pair name for launch template instances"
+}
+
+variable "master_username" {
+  type        = string
+  description = "Admin username for RDS instance"
+}
+
+variable "master_password" {
+  type        = string
+  description = "Admin password for RDS instance"
 }
