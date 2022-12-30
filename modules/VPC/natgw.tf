@@ -3,9 +3,9 @@ resource "aws_eip" "nat_eip" {
   depends_on = [aws_internet_gateway.igw]
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
-      Name = "${var.Name}-Natgw-EIP"
+      Name = "${var.name}-Natgw-EIP"
     }
   )
 }
@@ -16,9 +16,9 @@ resource "aws_nat_gateway" "natgw" {
   depends_on    = [aws_internet_gateway.igw]
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
-      Name = "${var.Name}-Natgw"
+      Name = "${var.name}-Natgw"
     }
   )
 }

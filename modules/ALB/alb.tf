@@ -1,28 +1,23 @@
 # External ALB
 resource "aws_lb" "ext_alb" {
-  name               = "ext-alb"
+  name               = "${var.name}-Ext-ALB"
   internal           = false
-  load_balancer_type = "application"
-  ip_address_type    = "ipv4"
-  security_groups = [
-    aws_security_group.ext_alb_sg.id
-  ]
-  subnets = [
-    aws_subnet.public[0].id,
-    aws_subnet.public[1].id
-  ]
+  load_balancer_type = var.load_balancer_type
+  ip_address_type    = var.ip_address_type
+  security_groups    = [var.public_sg]
+  subnets            = var.public_subnets
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
-      Name = "${var.Name}-Ext-Alb"
+      Name = "${var.name}-Ext-ALB"
     }
   )
 }
 
 # Nginx target group to forward External ALB request to
 resource "aws_lb_target_group" "nginx_tg" {
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
   name        = "nginx-tg"
   port        = 443
   protocol    = "HTTPS"
@@ -69,22 +64,17 @@ resource "aws_lb_listener" "nginx_listner_http" {
 
 # Internal ALB
 resource "aws_lb" "int_alb" {
-  name               = "int-alb"
+  name               = "${var.name}-Int-ALB"
   internal           = false
-  load_balancer_type = "application"
+  load_balancer_type = var.load_balancer_type
   ip_address_type    = "ipv4"
-  security_groups = [
-    aws_security_group.int_alb_sg.id
-  ]
-  subnets = [
-    aws_subnet.private[0].id,
-    aws_subnet.private[1].id
-  ]
+  security_groups    = [var.private_sg]
+  subnets            = var.private_subnets
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
-      Name = "${var.Name}-Int-Alb"
+      Name = "${var.name}-Int-ALB"
     }
   )
 }
@@ -95,7 +85,7 @@ resource "aws_lb_target_group" "wordpress_tg" {
   port        = 443
   protocol    = "HTTPS"
   target_type = "instance"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   health_check {
     interval            = 10
@@ -113,7 +103,7 @@ resource "aws_lb_target_group" "tooling_tg" {
   port        = 443
   protocol    = "HTTPS"
   target_type = "instance"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   health_check {
     interval            = 30

@@ -23,23 +23,23 @@ variable "preferred_number_of_private_subnets" {
   default = 4
 }
 
-variable "Name" {
+variable "name" {
   default = "IAC"
 }
 
-variable "Environment" {
+variable "environment" {
   default = "development"
 }
 
-variable "OwnerEmail" {
+variable "ownerEmail" {
   default = "test@testmail.com"
 }
 
-variable "ManagedBy" {
+variable "managedBy" {
   default = "Terraform"
 }
 
-variable "BillingAccount" {
+variable "billingAccount" {
   type        = number
   description = "AWS Account ID to bill for resources"
 }
@@ -48,11 +48,6 @@ variable "tags" {
   description = "A mapping of tags to assign to all resources."
   type        = map(string)
   default     = {}
-}
-
-variable "all_dest" {
-  description = "cidr notation for all destination addresses"
-  default     = "0.0.0.0/0"
 }
 
 variable "bastion_ami" {

@@ -15,9 +15,9 @@ resource "aws_iam_role" "ec2_instance_role" {
   })
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
-      Name = "${var.Name}-assume-role"
+      Name = "${var.name}-assume-role"
     },
   )
 }
@@ -40,9 +40,9 @@ resource "aws_iam_policy" "ec2_instance_policy" {
   })
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
-      Name = "${var.Name}-assume-role-policy"
+      Name = "${var.name}-assume-role-policy"
     },
   )
 }

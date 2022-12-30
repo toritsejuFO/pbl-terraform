@@ -10,7 +10,7 @@ resource "aws_kms_key" "kms_key" {
         "Sid": "Enable IAM User Permissions",
         "Effect": "Allow",
         "Principal": {
-          "AWS": "arn:aws:iam::${var.BillingAccount}:user/terraform"
+          "AWS": "arn:aws:iam::${var.billingAccount}:user/terraform"
         },
         "Action": "kms:*",
         "Resource": "*"
@@ -32,9 +32,9 @@ resource "aws_efs_file_system" "efs" {
   kms_key_id = aws_kms_key.kms_key.arn
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
-      Name = "${var.Name}-efs"
+      Name = "${var.name}-efs"
     },
   )
 }
@@ -42,15 +42,15 @@ resource "aws_efs_file_system" "efs" {
 # Set first mount target for the EFS 
 resource "aws_efs_mount_target" "private_subnet_1" {
   file_system_id  = aws_efs_file_system.efs.id
-  subnet_id       = aws_subnet.private[0].id
-  security_groups = [aws_security_group.datalayer_sg.id]
+  subnet_id       = var.efs_subnets[0]
+  security_groups = var.efs_sg
 }
 
 # Set second mount target for the EFS 
 resource "aws_efs_mount_target" "private_subnet_2" {
   file_system_id  = aws_efs_file_system.efs.id
-  subnet_id       = aws_subnet.private[1].id
-  security_groups = [aws_security_group.datalayer_sg.id]
+  subnet_id       = var.efs_subnets[1]
+  security_groups = var.efs_sg
 }
 
 # Create access point for wordpress

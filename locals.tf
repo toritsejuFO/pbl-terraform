@@ -1,8 +1,8 @@
 locals {
   tags = {
-    Enviroment     = var.Environment
-    OwnerEmail     = var.OwnerEmail
-    ManagedBy      = var.ManagedBy
-    BillingAccount = var.BillingAccount
+    Environment    = var.environment
+    OwnerEmail     = var.ownerEmail
+    ManagedBy      = var.managedBy
+    BillingAccount = var.billingAccount
   }
 }

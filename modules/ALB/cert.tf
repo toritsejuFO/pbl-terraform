@@ -4,9 +4,9 @@ resource "aws_acm_certificate" "toritsejufo" {
   validation_method = "DNS"
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
-      Name = "${var.Name}-Cert"
+      Name = "${var.name}-Cert"
     }
   )
 }

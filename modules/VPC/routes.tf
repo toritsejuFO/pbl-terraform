@@ -3,9 +3,9 @@ resource "aws_route_table" "pub_rtb" {
   vpc_id = aws_vpc.main.id
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
-      Name = "${var.Name}-PubRtb"
+      Name = "${var.name}-PubRtb"
     }
   )
 }
@@ -27,9 +27,9 @@ resource "aws_route_table" "priv_rtb" {
   vpc_id = aws_vpc.main.id
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
-      Name = "${var.Name}-PrivRtb"
+      Name = "${var.name}-PrivRtb"
     }
   )
 }
